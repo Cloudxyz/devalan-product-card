@@ -1,19 +1,23 @@
 import styles from '../styles/styles.module.css'
-import noImage from '../assets/no-image.jpg'
+import { useProduct } from '../hooks/useProduct';
+import { Provider } from '../context/ProductContext';
+import { ProductCardProps } from '../interfaces/interfaces';
 
-export const ProductCard = () => {
-  return (
-	<div className={styles.productCard}>
-		<img className={styles.productImg} src='./coffee-mug.png' alt='' />
-		{/* <img className={styles.productImg} src={noImage} alt='' /> */}
+export const ProductCard = ({ children, product } : ProductCardProps) => {
 
-		<span className={styles.productDescription}>Coffe Mug</span>
+	const {count, handleMinus, handleAdd} = useProduct();
 
-		<div className={styles.buttonsContainer}>
-			<button className={styles.buttonMinus}> - </button>
-			<div className={styles.countLabel}>0</div>
-			<button className={styles.buttonAdd}> + </button>
-		</div>
-	</div>
-  )
+	return (
+		<Provider value={{
+			count,
+			handleMinus,
+			handleAdd,
+			product
+		 }}>
+			<div className={styles.productCard}>
+
+				{children}
+			</div>
+		</Provider>
+  	)
 }
