@@ -3,7 +3,7 @@ import { useProduct } from '../hooks/useProduct';
 import { Provider } from '../context/ProductContext';
 import { ProductCardProps } from '../interfaces/interfaces';
 
-export const ProductCard = ({ children, product } : ProductCardProps) => {
+export const ProductCard = ({ children, product, className, style } : ProductCardProps) => {
 
 	const {count, handleMinus, handleAdd} = useProduct();
 
@@ -12,10 +12,15 @@ export const ProductCard = ({ children, product } : ProductCardProps) => {
 			count,
 			handleMinus,
 			handleAdd,
-			product
+			product,
+			className,
 		 }}>
-			<div className={styles.productCard}>
-
+			<div className={
+				`${styles.productCard}
+				${ className }`
+			}
+			style={style}
+			>
 				{children}
 			</div>
 		</Provider>
