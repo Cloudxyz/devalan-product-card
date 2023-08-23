@@ -1,17 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { UseProductsArgs } from '../interfaces/interfaces';
 
 
-export const useProduct = () => {
-	const [count, setCount] = useState(0);
+export const useProduct = ( { onChange, product, value = 0 }:UseProductsArgs ) => {
+	const [count, setCount] = useState(value);
 
 	const handleAdd = (value: number) => {
-		setCount(count + value);
+		const newValue = count + value;
+		setCount(newValue);
+		onChange && onChange({count: newValue, product});
 	}
 
 	const handleMinus = (value: number) => {
+		const newValue = count - value;
 		if (count > 0)
-		setCount(count - value);
+		setCount(newValue);
+		onChange && onChange({count: newValue, product});
 	}
+
+	useEffect(() => {
+		setCount(value);
+	}, [value]);
 
 	return {
 		count,

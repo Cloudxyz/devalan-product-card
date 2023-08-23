@@ -7,7 +7,9 @@ export const Navigation = () => {
 	return (
 		<BrowserRouter>
 			<div className="main-layout">
-				<nav>
+				<nav style={{
+					width: '20%',
+				 }}>
 					<img src={logo} alt="React Logo" />
 					<ul>
 						<li>

@@ -3,9 +3,9 @@ import { useProduct } from '../hooks/useProduct';
 import { Provider } from '../context/ProductContext';
 import { ProductCardProps } from '../interfaces/interfaces';
 
-export const ProductCard = ({ children, product, className, style } : ProductCardProps) => {
+export const ProductCard = ({ children, product, className, style, onChange, value } : ProductCardProps) => {
 
-	const {count, handleMinus, handleAdd} = useProduct();
+	const {count, handleMinus, handleAdd} = useProduct({ onChange, product, value });
 
 	return (
 		<Provider value={{
@@ -19,7 +19,7 @@ export const ProductCard = ({ children, product, className, style } : ProductCar
 				`${styles.productCard}
 				${ className }`
 			}
-			style={style}
+				style={style}
 			>
 				{children}
 			</div>
