@@ -6,8 +6,8 @@ export interface ProductCardProps{
 	style?: React.CSSProperties;
 	value?: number;
 	initialValues?: ProductInitialValues;
-	children?: ReactElement | ReactElement[];
-	// children: (args: ProductCardHandlers) => JSX.Element;
+	// children?: ReactElement | ReactElement[];
+	children: (args: ProductCardHandlers) => JSX.Element;
 	onChange?: (args: OnChangeArgs) => void;
 }
 
